@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Uki — Frontend Developer</title>
+  <meta name="description" content="Uki — frontend-разработчик. Создание лендингов, адаптивная вёрстка и доработка сайтов.">
+  <meta name="theme-color" content="#171a18">
+  <link rel="canonical" href="https://uzakilaa.github.io/">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23171a18'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-weight='700' font-size='34' fill='%23b6c9a9'%3Eu%3C/text%3E%3Ccircle cx='47' cy='44' r='4' fill='%23d4e4a9'/%3E%3C/svg%3E">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Uki — Frontend Developer">
+  <meta property="og:description" content="Лендинги, адаптивная вёрстка и доработка сайтов. Казахстан.">
+  <meta property="og:url" content="https://uzakilaa.github.io/">
+  <meta property="og:image" content="https://uzakilaa.github.io/img/north-barber.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <div class="noise"></div>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a class="logo" href="#top">u<span>.</span>ki</a>
+
+      <nav class="nav">
+        <a href="#work" data-i="n_work">Работы</a>
+        <a href="#services" data-i="n_services">Услуги</a>
+        <a href="#about" data-i="n_about">Обо мне</a>
+      </nav>
+
+      <div class="header-right">
+        <div class="lang-switch">
+          <button data-lang="ru" class="active">RU</button>
+          <button data-lang="en">EN</button>
+        </div>
+        <a class="header-cta" href="#order">
+          <span data-i="nav_cta">Обсудить проект</span>
+          <span>↗</span>
+        </a>
+      </div>
+
+      <button class="menu-toggle" aria-label="Открыть меню">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-inner">
+
+        <div class="hero-topline">
+          <span class="eyebrow">
+            <span class="status-dot"></span>
+            <span data-i="hero_status">Открыт для проектов</span>
+          </span>
+          <span class="mono">KAZAKHSTAN / 2026</span>
+        </div>
+
+        <div class="hero-title-wrap">
+          <p class="hero-kicker" data-i="hero_kicker">Frontend developer / Independent</p>
+
+          <h1 class="hero-title">
+            <span>Ideas into</span>
+            <span class="hero-title-second">digital<span class="accent-dot">.</span></span>
+            <span class="hero-title-third">experiences<span class="outline-star">✳</span></span>
+          </h1>
+        </div>
+
+        <div class="hero-bottom">
+          <p class="hero-description" data-i="hero_desc">
+            Создаю современные сайты, которые выглядят хорошо, быстро работают и помогают бизнесу находить клиентов.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#work" class="button button-primary">
+              <span data-i="hero_work">Смотреть работы</span>
+              <span>↘</span>
+            </a>
+            <a href="#order" class="button button-ghost">
+              <span data-i="hero_order">Обсудить задачу</span>
+              <span>↗</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-index mono">
+          <span>01 — 04</span>
+          <span>SCROLL TO EXPLORE ↓</span>
+        </div>
+      </div>
+
+      <div class="hero-orb"></div>
+      <div class="hero-grid"></div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee">
+      <div class="marquee-track">
+        <span>DESIGN WITH PURPOSE ✳ FRONTEND DEVELOPMENT ✳ DIGITAL EXPERIENCES ✳ RESPONSIVE WEB ✳</span>
+        <span>DESIGN WITH PURPOSE ✳ FRONTEND DEVELOPMENT ✳ DIGITAL EXPERIENCES ✳ RESPONSIVE WEB ✳</span>
+      </div>
+    </div>
+
+    <!-- WORK -->
+    <section class="section work-section" id="work">
+      <div class="container">
+
+        <div class="section-heading">
+          <div>
+            <span class="section-number mono">01 / SELECTED WORK</span>
+            <h2 data-ih="work_title">Избранные <span>работы.</span></h2>
+          </div>
+          <p class="section-side-note" data-i="work_note">
+            Небольшая подборка проектов, над которыми я работал.
+          </p>
+        </div>
+
+        <div class="projects-grid" id="featured"></div>
+
+        <div class="work-more">
+          <span class="mono" data-i="work_more_note">ВЕСЬ КОД ОТКРЫТ НА GITHUB</span>
+          <a class="text-link" href="https://github.com/uzakilaa" target="_blank" rel="noopener">
+            <span data-i="work_more">Все проекты на GitHub</span>
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section services-section" id="services">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <span class="section-number mono">02 / WHAT I DO</span>
+            <h2 data-ih="services_title">Чем могу <span>помочь.</span></h2>
+          </div>
+          <p class="section-side-note" data-i="services_note">
+            От идеи и макета до готовой адаптивной страницы.
+          </p>
+        </div>
+
+        <div class="services-grid" id="srv"></div>
+
+        <div class="services-bottom">
+          <span class="mono">HTML / CSS / JS / REACT</span>
+          <a href="#order" class="text-link">
+            <span data-i="services_link">Есть задача? Давайте обсудим</span>
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section about-section" id="about">
+      <div class="container about-grid">
+        <div class="about-left">
+          <span class="section-number mono">03 / A LITTLE ABOUT ME</span>
+          <h2 data-ih="about_title">За каждым сайтом <span>стоит человек.</span></h2>
+
+          <div class="about-stamp">
+            <span>U</span>
+            <small>INDEPENDENT<br>DEVELOPER</small>
+          </div>
+        </div>
+
+        <div class="about-right">
+          <p class="about-lead" data-i="about_lead">
+            Привет, я Илияс. Но в интернете меня чаще знают как Uki.
+          </p>
+
+          <p data-i="about_text1">
+            Я frontend-разработчик из Казахстана. Мне нравится превращать идеи в понятные, аккуратные и удобные цифровые продукты.
+          </p>
+
+          <p data-i="about_text2">
+            Стараюсь не просто написать код, а разобраться в задаче, предложить подходящее решение и объяснить процесс человеческим языком.
+          </p>
+
+          <p data-i="about_text3">
+            До разработки работал в клиентской поддержке. Это научило меня слушать людей, задавать правильные вопросы и спокойно решать проблемы.
+          </p>
+
+          <div class="about-facts">
+            <div><span data-i="fact_location">Локация</span><strong>Kazakhstan</strong></div>
+            <div><span data-i="fact_focus">Фокус</span><strong>Frontend</strong></div>
+            <div><span data-i="fact_stack">Технологии</span><strong>HTML / CSS / JS</strong></div>
+            <div><span data-i="fact_languages">Языки</span><strong>RU / EN</strong></div>
+          </div>
+
+          <a class="text-link github-link" href="https://github.com/uzakilaa" target="_blank" rel="noopener">
+            <span data-i="github_link">Посмотреть мой GitHub</span>
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="process-section">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <span class="section-number mono">04 / HOW IT WORKS</span>
+            <h2 data-ih="process_title">Без сложностей. <span>По шагам.</span></h2>
+          </div>
+        </div>
+
+        <div class="process-grid">
+          <article class="process-item">
+            <span class="process-number mono">01</span>
+            <h3 data-i="step1_title">Знакомство</h3>
+            <p data-i="step1_desc">Обсуждаем вашу задачу, цели, пожелания и примерный бюджет.</p>
+          </article>
+
+          <article class="process-item">
+            <span class="process-number mono">02</span>
+            <h3 data-i="step2_title">План</h3>
+            <p data-i="step2_desc">Определяем структуру, внешний вид, сроки и объём работы.</p>
+          </article>
+
+          <article class="process-item">
+            <span class="process-number mono">03</span>
+            <h3 data-i="step3_title">Разработка</h3>
+            <p data-i="step3_desc">Создаю сайт, показываю результат и учитываю согласованные правки.</p>
+          </article>
+
+          <article class="process-item">
+            <span class="process-number mono">04</span>
+            <h3 data-i="step4_title">Запуск</h3>
+            <p data-i="step4_desc">Проверяем адаптивность и передаю готовый результат.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="section reviews-section" id="reviews" style="display:none">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <span class="section-number mono">05 / KIND WORDS</span>
+            <h2 data-ih="reviews_title">Что говорят <span>люди.</span></h2>
+          </div>
+          <a class="text-link" id="reviewsAll" href="https://uzakilaa.github.io/reviews/" target="_blank" rel="noopener">
+            <span data-i="reviews_all">Все отзывы</span>
+            <span>↗</span>
+          </a>
+        </div>
+        <div class="reviews-grid" id="rvlist"></div>
+      </div>
+    </section>
+
+    <!-- ORDER -->
+    <section class="section order-section" id="order">
+      <div class="container order-grid">
+        <div class="order-left">
+          <span class="section-number mono">06 / LET'S TALK</span>
+          <h2 data-ih="order_title">Есть идея?<br><span>Давайте создадим.</span></h2>
+
+          <p data-i="order_desc">
+            Расскажите немного о проекте. Я изучу задачу и свяжусь с вами, чтобы обсудить детали.
+          </p>
+
+          <div class="order-direct">
+            <span class="mono" data-i="direct_label">ИЛИ НАПИШИТЕ НАПРЯМУЮ</span>
+            <a id="directTelegram" href="#" target="_blank" rel="noopener">Telegram ↗</a>
+            <a id="directEmail" href="#">Email ↗</a>
+            <a href="https://www.instagram.com/uzakilaa/" target="_blank" rel="noopener">Instagram ↗</a>
+          </div>
+        </div>
+
+        <div class="order-form-wrap">
+          <form id="orderForm" novalidate>
+            <div class="form-row">
+              <div class="form-field">
+                <label for="name" data-i="form_name">Как вас зовут?</label>
+                <input id="name" name="name" placeholder="Имя" autocomplete="name">
+              </div>
+
+              <div class="form-field">
+                <label for="via" data-i="form_via">Куда ответить?</label>
+                <select id="via" name="via">
+                  <option value="Telegram">Telegram</option>
+                  <option value="Email">Email</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="contact" data-i="form_contact">Ваш Telegram или Email</label>
+              <input id="contact" name="contact" placeholder="@username или email" required>
+            </div>
+
+            <div class="form-field">
+              <label for="type" data-i="form_type">Что нужно сделать?</label>
+              <select id="type" name="type"></select>
+            </div>
+
+            <div class="form-field">
+              <label for="desc" data-i="form_desc">Расскажите о проекте</label>
+              <textarea id="desc" name="desc" rows="4" placeholder="Каким вы видите результат?"></textarea>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label for="urg" data-i="form_urg">Когда нужно?</label>
+                <select id="urg" name="urg"></select>
+              </div>
+
+              <div class="form-field">
+                <label for="bud" data-i="form_budget">Бюджет</label>
+                <select id="bud" name="bud"></select>
+              </div>
+            </div>
+
+            <input class="hp" name="website" tabindex="-1" autocomplete="off">
+
+            <button class="button button-primary submit-button" type="submit">
+              <span data-i="form_send">Отправить заявку</span>
+              <span>↗</span>
+            </button>
+
+            <p class="form-message" id="msg" role="status"></p>
+            <p class="form-privacy" data-i="form_privacy">
+              Никакого спама. Только ответ по вашему проекту.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTS -->
+    <section class="footer-cta">
+      <div class="container">
+        <span class="mono">HAVE A GOOD IDEA?</span>
+        <a href="#order" data-ih="footer_cta">LET'S MAKE IT REAL <span>↗</span></a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a class="logo" href="#top">u<span>.</span>ki</a>
+      <span>© 2026 Kazykhan Iliyas</span>
+      <div class="footer-links">
+        <a id="footerGithub" href="https://github.com/uzakilaa" target="_blank" rel="noopener">GitHub ↗</a>
+        <a id="footerTelegram" href="#" target="_blank" rel="noopener">Telegram ↗</a>
+        <a href="https://www.instagram.com/uzakilaa/" target="_blank" rel="noopener">Instagram ↗</a>
+        <a id="footerReview" href="#" target="_blank" rel="noopener" data-i="leave_review">Оставить отзыв ↗</a>
+        <a href="#top" data-i="back_top">Наверх ↑</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
