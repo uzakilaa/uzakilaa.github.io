@@ -8,7 +8,7 @@
   <meta name="description" content="Uki — frontend-разработчик. Создание лендингов, адаптивная вёрстка и доработка сайтов.">
   <meta name="theme-color" content="#171a18">
   <link rel="canonical" href="https://uzakilaa.github.io/">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23171a18'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-weight='700' font-size='34' fill='%23b6c9a9'%3Eu%3C/text%3E%3Ccircle cx='47' cy='44' r='4' fill='%23d4e4a9'/%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23171a18'/%3E%3Ctext x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-weight='800' font-size='26' letter-spacing='-2' fill='%23b6c9a9'%3Euki%3C/text%3E%3C/svg%3E">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Uki — Frontend Developer">
@@ -26,10 +26,12 @@
 
 <body>
   <div class="noise"></div>
+  <div class="scroll-progress" aria-hidden="true"></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
 
   <header class="header">
     <div class="container header-inner">
-      <a class="logo" href="#top">u<span>.</span>ki</a>
+      <a class="logo" href="#top" aria-label="Uki">uk<span>i</span></a>
 
       <nav class="nav">
         <a href="#work" data-i="n_work">Работы</a>
@@ -72,9 +74,9 @@
           <p class="hero-kicker" data-i="hero_kicker">Frontend developer / Independent</p>
 
           <h1 class="hero-title">
-            <span>Ideas into</span>
-            <span class="hero-title-second">digital<span class="accent-dot">.</span></span>
-            <span class="hero-title-third">experiences<span class="outline-star">✳</span></span>
+            <span class="hero-line"><span>Ideas into</span></span>
+            <span class="hero-line hero-title-second"><span>digital<span class="accent-dot">.</span></span></span>
+            <span class="hero-line hero-title-third"><span>experiences<span class="outline-star">✳</span></span></span>
           </h1>
         </div>
 
@@ -102,7 +104,16 @@
       </div>
 
       <div class="hero-orb"></div>
+      <div class="hero-orb hero-orb-2"></div>
       <div class="hero-grid"></div>
+
+      <div class="hero-chips" aria-hidden="true">
+        <span class="chip" style="--x:86%;--y:20%;--d:0s">HTML</span>
+        <span class="chip" style="--x:91%;--y:38%;--d:-2s">CSS</span>
+        <span class="chip" style="--x:79%;--y:50%;--d:-4s">JavaScript</span>
+        <span class="chip" style="--x:90%;--y:63%;--d:-1s">React</span>
+        <span class="chip chip-accent" style="--x:71%;--y:27%;--d:-3s">TypeScript</span>
+      </div>
     </section>
 
     <!-- MARQUEE -->
@@ -355,7 +366,7 @@
 
   <footer class="footer">
     <div class="container footer-inner">
-      <a class="logo" href="#top">u<span>.</span>ki</a>
+      <a class="logo" href="#top" aria-label="Uki">uk<span>i</span></a>
       <span>© 2026 Kazykhan Iliyas</span>
       <div class="footer-links">
         <a id="footerGithub" href="https://github.com/uzakilaa" target="_blank" rel="noopener">GitHub ↗</a>

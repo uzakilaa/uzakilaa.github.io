@@ -24,6 +24,18 @@ const CONFIG = {
 
 const PROJECTS = [
   {
+    t: 'Adele Sushi',
+    d: {
+      ru: 'Сайт доставки суши и пиццы для заведения в Кандыагаше: меню с поиском, корзина, заказ в WhatsApp, русский и казахский языки.',
+      en: 'Delivery website for a sushi & pizza place in Kandyagash: searchable menu, cart, WhatsApp ordering, Russian and Kazakh.'
+    },
+    s: 'HTML / CSS / JS',
+    demo: 'https://uzakilaa.github.io/adele-sushi/',
+    code: 'https://github.com/uzakilaa/adele-sushi',
+    img: 'img/adele-sushi.png',
+    client: true
+  },
+  {
     t: 'North Barber',
     d: {
       ru: 'Сайт барбершопа: услуги и цены, мастера, онлайн-запись с проверкой формы и маской телефона.',
@@ -81,6 +93,7 @@ const I = {
     work_note: 'Небольшая подборка проектов, над которыми я работал.',
     work_demo: 'Демо',
     work_code: 'Код',
+    work_client: 'Коммерческий проект',
     work_more_note: 'ВЕСЬ КОД ОТКРЫТ НА GITHUB',
     work_more: 'Все проекты на GitHub',
 
@@ -199,6 +212,7 @@ const I = {
     work_note: 'A small collection of projects I have worked on.',
     work_demo: 'Live demo',
     work_code: 'Code',
+    work_client: 'Client project',
     work_more_note: 'ALL CODE IS OPEN ON GITHUB',
     work_more: 'All projects on GitHub',
 
@@ -343,8 +357,8 @@ const currentText = () => I[lang];
 function renderProjects() {
   const t = currentText();
 
-  $('#featured').innerHTML = PROJECTS.map(project => `
-    <article class="project-card">
+  $('#featured').innerHTML = PROJECTS.map((project, index) => `
+    <article class="project-card" data-reveal style="--i:${index % 2}">
       <a
         class="project-visual project-shot"
         href="${esc(project.demo)}"
@@ -353,9 +367,10 @@ function renderProjects() {
         aria-label="${esc(project.t)} — ${esc(t.work_demo)}"
       >
         <span class="project-topline">
-          <span>${esc(project.t.toUpperCase())}</span>
-          <span>LIVE</span>
+          <span>${String(index + 1).padStart(2, '0')} / ${esc(project.t.toUpperCase())}</span>
+          <span class="project-live"><i></i>LIVE</span>
         </span>
+        ${project.client ? `<span class="project-badge">★ ${esc(t.work_client)}</span>` : ''}
         <span class="project-shot-frame">
           <span class="project-shot-bar"><i></i><i></i><i></i></span>
           <img src="${esc(project.img)}" alt="${esc(project.t)}" loading="lazy" width="1440" height="900">
@@ -456,6 +471,9 @@ function render() {
   $('#footerGithub').href = CONFIG.github;
   $('#footerReview').href = CONFIG.reviewForm;
   $('#reviewsAll').href = CONFIG.reviewsPage;
+
+  observeReveal();
+  bindTilt();
 }
 
 
@@ -686,6 +704,7 @@ function renderReviews() {
   `).join('');
 
   section.style.display = 'block';
+  if (typeof observeReveal === 'function' && revealObserver !== undefined) observeReveal();
 }
 
 
@@ -700,8 +719,171 @@ if (location.hash === '#review') {
 
 
 /* ========================================
+   MOTION
+   Всё движение отключается при «уменьшить движение» в системе.
+   ======================================== */
+
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+// Появление блоков при прокрутке
+const REVEAL_SELECTORS = [
+  '.section-heading', '.work-more', '.service-card', '.services-bottom',
+  '.about-left h2', '.about-right > *', '.process-item', '.review-card',
+  '.order-left > *', '.order-form-wrap', '.footer-cta .container'
+];
+
+let revealObserver = null;
+let revealedOnce = false;
+
+function observeReveal() {
+  const items = [
+    ...$$('[data-reveal]'),
+    ...REVEAL_SELECTORS.flatMap(selector => $$(selector))
+  ];
+
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    items.forEach(element => element.classList.add('is-visible'));
+    return;
+  }
+
+  if (!revealObserver) {
+    revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  }
+
+  items.forEach(element => {
+    if (element.classList.contains('is-visible')) return;
+    element.setAttribute('data-reveal', '');
+    // при повторной отрисовке (смена языка) всё, что выше или на экране, показываем сразу
+    const rect = element.getBoundingClientRect();
+    if (rect.bottom < 0 || (revealedOnce && rect.top < innerHeight)) {
+      element.classList.add('is-visible');
+      return;
+    }
+    // небольшая задержка соседям внутри сетки
+    if (!element.style.getPropertyValue('--i')) {
+      const siblings = [...element.parentElement.children];
+      element.style.setProperty('--i', String(Math.min(siblings.indexOf(element), 4)));
+    }
+    revealObserver.observe(element);
+  });
+
+  revealedOnce = true;
+}
+
+// 3D-наклон карточек проектов за курсором
+function bindTilt() {
+  if (reduceMotion || !finePointer) return;
+
+  $$('.project-visual').forEach(card => {
+    if (card.dataset.tilt) return;
+    card.dataset.tilt = '1';
+
+    card.addEventListener('mousemove', event => {
+      const rect = card.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - 0.5;
+      const y = (event.clientY - rect.top) / rect.height - 0.5;
+      card.style.setProperty('--rx', `${(-y * 6).toFixed(2)}deg`);
+      card.style.setProperty('--ry', `${(x * 8).toFixed(2)}deg`);
+      card.style.setProperty('--mx', `${((x + 0.5) * 100).toFixed(1)}%`);
+      card.style.setProperty('--my', `${((y + 0.5) * 100).toFixed(1)}%`);
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.setProperty('--rx', '0deg');
+      card.style.setProperty('--ry', '0deg');
+    });
+  });
+}
+
+function initMotion() {
+  const header = $('.header');
+  const progress = $('.scroll-progress');
+  const navLinks = $$('.nav a');
+  const sections = navLinks
+    .map(link => document.querySelector(link.getAttribute('href')))
+    .filter(Boolean);
+
+  // Шапка, полоса прогресса и активный пункт меню
+  let ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const max = document.documentElement.scrollHeight - innerHeight;
+      progress.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
+      header.classList.toggle('is-scrolled', scrollY > 30);
+
+      let current = null;
+      sections.forEach(section => {
+        if (section.getBoundingClientRect().top < innerHeight * 0.4) current = section.id;
+      });
+      navLinks.forEach(link =>
+        link.classList.toggle('is-active', link.getAttribute('href') === '#' + current));
+
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Запуск анимации первого экрана
+  requestAnimationFrame(() => document.body.classList.add('is-loaded'));
+
+  if (reduceMotion || !finePointer) return;
+
+  // Мягкое свечение за курсором
+  const glow = $('.cursor-glow');
+  window.addEventListener('pointermove', event => {
+    glow.style.transform = `translate(${event.clientX}px, ${event.clientY}px)`;
+    glow.classList.add('is-on');
+  }, { passive: true });
+  document.addEventListener('pointerleave', () => glow.classList.remove('is-on'));
+
+  // «Магнитные» кнопки
+  $$('.button, .header-cta').forEach(button => {
+    button.addEventListener('mousemove', event => {
+      const rect = button.getBoundingClientRect();
+      const x = event.clientX - rect.left - rect.width / 2;
+      const y = event.clientY - rect.top - rect.height / 2;
+      button.style.transform = `translate(${x * 0.15}px, ${y * 0.25}px)`;
+    });
+    button.addEventListener('mouseleave', () => { button.style.transform = ''; });
+  });
+
+  // Подсветка карточек услуг и шагов под курсором
+  $$('#srv, .process-grid').forEach(grid => {
+    grid.addEventListener('mousemove', event => {
+      const card = event.target.closest('.service-card, .process-item');
+      if (!card) return;
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--mx', `${event.clientX - rect.left}px`);
+      card.style.setProperty('--my', `${event.clientY - rect.top}px`);
+    });
+  });
+
+  // Лёгкий параллакс фона первого экрана
+  const hero = $('.hero');
+  hero.addEventListener('mousemove', event => {
+    const x = event.clientX / innerWidth - 0.5;
+    const y = event.clientY / innerHeight - 0.5;
+    hero.style.setProperty('--px', x.toFixed(3));
+    hero.style.setProperty('--py', y.toFixed(3));
+  });
+}
+
+
+/* ========================================
    INITIALIZATION
    ======================================== */
 
 render();
+initMotion();
 loadReviews();
