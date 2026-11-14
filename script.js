@@ -165,6 +165,7 @@ const I = {
     types: [
       'Лендинг',
       'Сайт-визитка',
+      'Сайт для кафе / доставки',
       'Вёрстка по макету',
       'Доработка сайта',
       'Другое'
@@ -284,6 +285,7 @@ const I = {
     types: [
       'Landing page',
       'Business card website',
+      'Café / delivery website',
       'Layout from a mockup',
       'Website improvements',
       'Other'
